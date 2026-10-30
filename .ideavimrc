@@ -1,0 +1,205 @@
+let mapleader=" "
+
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'machakann/vim-highlightedyank'
+Plug 'dbakker/vim-paragraph-motion'
+Plug 'chrisbra/matchit'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'kana/vim-textobj-entire'
+Plug 'easymotion/vim-easymotion'
+Plug 'michaeljsmith/vim-indent-object'
+"set which-key
+
+""" set ------------------------------
+set number relativenumber
+set keep-english-in-normal
+set idearefactormode=keep
+set ideastatusicon=gray
+set ideajoin
+set clipboard+=unnamed
+set scrolloff=3
+set sidescrolloff=8
+set ideamarks
+set nokeep-english-in-normal
+set nokeep-english-in-normal-and-restore-in-insert
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set softtabstop=2
+
+set wildmenu
+
+""" search ---------------------------------------
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+nnoremap <ESC><ESC> :nohl<CR>
+vmap * "ry/<C-R>r<CR>
+set wrapscan
+
+""" edit amction ----------------------------------
+map <M-d> "_d
+map <M-c> "_c
+
+
+
+""" navigation --------------------------------
+nmap <S-h> :tabm-1<CR>
+nmap <S-l> :tabm+1<CR>
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap ]g <Action>(VcsShowNextChangeMarker)
+nmap [g <Action>(VcsShowPrevChangeMarker)
+imap <C-h> <Left>
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-l> <Right>
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
+nmap H :action PreviousTab<CR>
+nmap L :action NextTab<CR>
+
+nmap <C-m> :action SelectNextOccurrence<cr>
+xmap <C-m> :action SelectNextOccurrence<cr>
+nmap <C-s> :action FindNext<cr>
+xmap <C-s> :action FindNext<cr>
+"FindPrevious
+"nmap <C-o> :action UnselectPreviousOccurrence<cr>
+"xmap <C-o> :action UnselectPreviousOccurrence<cr>
+nmap <S-C-m> :action SelectAllOccurrences<cr>
+xmap <S-C-m> :action SelectAllOccurrences<cr>
+
+" Do incremental searching.
+set incsearch
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+"Move code up and down
+inoremap <c-j> <Esc>:action MoveStatementDown<CR>i
+inoremap <c-k> <Esc>:action MoveStatementUp<CR>i
+vnoremap J :action MoveStatementDown<CR>
+vnoremap K :action MoveStatementUp<CR>
+
+inoremap <c-l> <Esc>:action EditorCompleteStatement<CR>
+nnoremap <Space>t :action Refactorings.QuickListPopupAction<CR>
+vnoremap <Space>t :action Refactorings.QuickListPopupAction<CR>
+"nnoremap <leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <Space>q :action HideActiveWindow<CR>
+nnoremap <leader>e :e ~/.ideavimrc<CR>
+"nnoremap <leader>kr :action IdeaVim.ReloadVimRc.reload<CR>
+nnoremap <leader>n :action ContextRun<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <leader>c :action ChooseRunConfiguration<CR>
+nnoremap <leader>d :action ChooseDebugConfiguration<CR>
+nnoremap <leader>s :action FileStructurePopup<CR>
+nnoremap <Space>ka :action RunAnything<CR>
+nnoremap <Space>kr :action Rerun<CR>
+nnoremap <Space>kn :action ContextRun<CR>
+nnoremap <Space>kl :action Git.Pull<CR>
+nnoremap <Space>kc :action RunClass<CR>
+nnoremap <Space>kf :action RerunFailedTests<CR>
+nnoremap <Space>ks :action Console.Jdbc.Execute<CR>
+nnoremap <Space>f :action GotoFile<CR>
+nnoremap <leader>a :action GotoAction<CR>
+nnoremap <leader>h :action HideAllWindows<CR>
+nnoremap <Space>w :action GotoNextError<CR>
+nnoremap <c-f> :action GotoNextError<CR>
+nnoremap <Space>b :action GotoPreviousError<CR>
+nnoremap <c-b> :action GotoPreviousError<CR>
+nnoremap <Space>u :action FindUsages<CR>
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+"nnoremap <Space>u :action ShowUsages<CR>
+"gD可以替代这个
+
+"Refactor
+nnoremap <Space>n :action Inline<CR>
+vnoremap <Space>n :action Inline<CR>
+
+"Extract Method
+nnoremap <Space>m :action ExtractMethod<CR>
+nnoremap <c-m> :action ExtractMethod<CR>
+vnoremap <Space>m :action ExtractMethod<CR>
+vnoremap <c-m> :action ExtractMethod<CR>
+
+nnoremap <Space>v :action IntroduceVariable<CR>
+vnoremap <Space>v :action IntroduceVariable<CR>
+nnoremap <Space>i :action ShowIntentionActions<CR>
+nnoremap <c-i> :action ShowIntentionActions<CR>
+nnoremap <Space>e :action ReformatCode<CR>
+nnoremap <Space>l :action ReformatCode<CR>
+nnoremap <Space>o :action Move<CR>
+
+"Rename
+nnoremap <Space>r :action RenameElement<CR>
+nnoremap <c-r> :action RenameElement<CR>
+
+nmap U :action $Redo<CR>
+nnoremap <Space>p :action IntroduceParameter<CR>
+nnoremap <Space>c :action ExtractClass<CR>
+
+"nnoremap <leader>v :action Vcs.QuickListPopupAction<CR>
+nnoremap <Space>kh :action TypeHierarchy<CR>
+
+"nnoremap gc :action GotoClass<CR>
+nnoremap gI :action GotoImplementation<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+
+nnoremap <leader>f :action FindInPath<CR>
+
+nnoremap <leader>x :action CodeCompletion<CR>
+inoremap <c-x> :action CodeCompletion<CR>
+
+""" some action -----------------------
+map == <Action>(ReformatCode)
+map -- <Action>(OptimizeImports)
+nmap zo <Action>(ExpandRegion)
+nmap zc <Action>(CollapseRegion)
+nmap zO <Action>(ExpandAllRegions)
+nmap zC <Action>(CollapseAllRegions)
+nmap gD <Action>(GotoTypeDeclaration)
+nmap gA <Action>(FindUsages)
+nmap <M-k> <Action>(QuickJavaDoc)
+imap <M-k> <Action>(QuickJavaDoc)
+nmap <M-j> <Action>(ShowErrorDescription)
+imap <M-j> <Action>(ShowErrorDescription)
+nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoSuperMethod)
+nmap <leader>h <Action>(HighlightUsagesInFile)
+nmap <leader>s <Action>(SelectInProjectView)
+nmap cd <Action>(RenameElement)
+nmap [f <Action>(MethodUp)
+nmap ]f <Action>(MehodDown)
+nmap L <Action>(NextTab)
+nmap H <Action>(PreviousTab)
+map s <Action>(flash.search)
+
+
+
+""" run and debug, break point --------
+nmap \b <Action>(ToggleLineBreakpoint)
+nmap \p <Action>(ChooseDebugConfiguration)
+nmap \d <Action>(DebugClass)
+nmap \r <Action>(RunClass)
+
+""" vcs action ------------------------
+
+nmap <leader>ga <Action>(Annotate)
+nmap <leader>gd <Action>(Compare.SameVersion)
+vmap <leader>gd <Action>(CompareClipboardWithSelection)
+nmap <leader>gr <Action>(Vcs.RollbackChangedLines)
+
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
+"inoremap ( ()<ESC>i
+"inoremap [ []<ESC>i
+"inoremap { {<CR>}<ESC>O
